@@ -122,7 +122,7 @@ namespace TBA_V2
                     Program.player.hp -= r.Next(Program.player.dmg, Program.player.dmg + 5) * (1 - res);
                 }
             }
-            if (hp > 0) return null;
+            if (Program.player.hp > 0) return null;
             return true;
         }
     }
