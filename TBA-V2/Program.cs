@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -24,14 +24,12 @@ namespace TBA_V2
             else
             {
                 Console.Clear();
-                Console.Write("I herby declare that i ");
-                player.name = Console.ReadLine();
+                player.name = IO.IOtxt("I herby declare that i ", " will serve the eternal guild with my soul untill i am released, i also am aware that if i shuld fall during the completion of a quest my mind and soul will be retured to the time and place i was issued that quest.");
                 if (File.Exists(player.name + ".save"))
                 {
-                    Environment.Exit(0);
+                    Console.Clear();
+                    player.name = IO.IOtxt("Name alredy exists, if you want to override it please input the same name again, otherwise type another name.\nWe will not warn you again if this name exists, please check beforehand: ");
                 }
-                Console.SetCursorPosition(23 + player.name.Length, 0);
-                Console.WriteLine(" will serve the eternal guild with my soul untill i am released, i also am aware that if i shuld fall during the completion of a quest my mind and soul will be retured to the time and place i was issued that quest.");
                 Console.Read();
                 player.Chgen();
                 inv.invgen("¦");
