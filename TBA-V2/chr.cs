@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +16,7 @@ namespace TBA_V2
         public int ill;
         public int spll;
         public int kills;
+        public bool alive = true;
         public void Chgen()
         {
 
