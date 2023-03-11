@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +41,9 @@ namespace TBA_V2
             int temp = 0;
             while (hp > 0 && Program.player.hp > 0)
             {
-                switch (Console.ReadLine())
+                Console.Clear();
+                IO.O($"{name} statistics:\nhealth: {hp}\n{Program.player.name} statistics:\nhealth: {Program.player.hp}\ndmg: {Program.player.dmg}\nresistance: {Program.player.res}\n\nWaht will you do?\n");
+                switch (IO.Itxt())
                 {
                     case "attack":
                         Program.player.spll++;
@@ -58,11 +60,11 @@ namespace TBA_V2
                         Program.player.spll++;
                         for (int i = 0; i < Program.inv.inv.Count(); i++)
                         {
-                            Console.WriteLine(i + 1 + " " + Program.inv.names[Program.inv.inv[i]]);
+                            IO.O("\n" + (i + 1) + ". " + Program.inv.names[Program.inv.inv[i]]);
                         }
                         try
                         {
-                            temp = int.Parse(Console.ReadLine());
+                            temp = IO.Iint() - 1;
                             id = Program.inv.inv[temp];
                         }
                         catch
@@ -70,18 +72,18 @@ namespace TBA_V2
                             Program.player.ill++;
                             id = 3;
                         }
+                        IO.O($"\n\n{Program.inv.id[id, 0]} { Program.inv.id[id, 1]}\n");
+                        Console.Read();
                         switch (Program.inv.id[id, 0])
                         {
                             case 0:
                                 switch (Program.inv.id[id, 1])
                                 {
                                     case 0:
-                                        Console.WriteLine("rev");
                                         hp += 20;
                                         res += 1;
                                         break;
                                     case 1:
-                                        Console.WriteLine("bigh");
                                         Program.player.res -= 0.1F;
                                         Program.player.dmg -= 2;
                                         Program.player.hp += 100;
@@ -92,12 +94,9 @@ namespace TBA_V2
                                 }
                                 break;
                             case 1:
-                                Console.WriteLine(Program.inv.id[id, 1]);
-                                hp -= r.Next((int)Program.inv.id[id, 1], (int)Program.inv.id[id, 1] + 5);
-                                Console.WriteLine(hp);
+                                hp -= Program.inv.id[id, 1];
                                 break;
                             case 2:
-                                Console.WriteLine("h");
                                 Program.player.hp += Program.inv.id[id, 1];
                                 Program.inv.inv.RemoveAt(temp);
                                 break;
@@ -115,14 +114,14 @@ namespace TBA_V2
                 }
                 if (rand.wh(12, 88))
                 {
-                    Program.player.hp -= r.Next(Program.player.dmg, Program.player.dmg + 5);
+                    Program.player.hp -= r.Next(dmg, dmg + 5);
                 }
                 else
                 {
-                    Program.player.hp -= r.Next(Program.player.dmg, Program.player.dmg + 5) * (1 - res);
+                    Program.player.hp -= r.Next(dmg, dmg + 5) * (1 - Program.player.res);
                 }
             }
-            if (Program.player.hp > 0) return null;
+            if (Program.player.hp < 0) return null;
             return true;
         }
     }
