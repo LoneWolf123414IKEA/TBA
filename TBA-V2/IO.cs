@@ -26,7 +26,7 @@ namespace TBA_V2
             Console.Write(in1);
             outtxt = Console.ReadLine();
             Console.SetCursorPosition((cursororig + outtxt.Length), (Console.CursorTop - 1));
-
+            return outtxt;
         }
         public static int IOint(string in1, string in2)
         {
