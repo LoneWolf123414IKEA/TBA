@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,34 +64,34 @@ namespace TBA_V2
         public void loot()
         {
             int loot = rand.wh();
-            if (loot == names.Length + 1)
+            if (loot == names.Length)
             {
                 Program.player.res += 0.1F;
             }
-            else if (loot == names.Length + 2) ;
+            else if (loot == names.Length + 1) ;
             else if (inv.Count() <= maxinv)
             {
 
-                Console.WriteLine("do you want " + names[loot] + "?");
-                if (Console.ReadLine() == "y") inv.Add(loot);
+                IO.O("do you want " + names[loot] + "?\n");
+                if (IO.Itxt() == "y") inv.Add(loot);
             }
             else if (inv.Count() > maxinv)
             {
-                Console.WriteLine("do you want " + names[loot] + "?");
-                if (Console.ReadLine() == "y")
+                IO.O("do you want " + names[loot] + "?\n");
+                if (IO.Itxt() == "y")
                 {
                     for (int i = 0; i < inv.Count(); i++)
                     {
-                        Console.WriteLine(i + 1 + " " + names[inv[i]]);
+                        IO.O(i + 1 + " " + names[inv[i]]);
                     }
-                    Console.WriteLine("\nchoose item to discard");
+                    IO.O("\nchoose item to discard\n");
                     try
                     {
                         inv.RemoveAt(int.Parse(Console.ReadLine()) - 1);
                     }
                     catch
                     {
-                        Console.WriteLine("out of range, removing first object");
+                        IO.O("out of range, removing first object\n");
                         inv.RemoveAt(0);
                     }
                     inv.Add(loot);
