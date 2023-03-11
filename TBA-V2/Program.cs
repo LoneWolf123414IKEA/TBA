@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace TBA_V2
 {
@@ -13,11 +14,12 @@ namespace TBA_V2
         public static battlescript figt = new battlescript();
         static void Main()
         {
-            Console.WriteLine("do you want to load a saved game? (y/n)");
+            IO.O("do you want to load a saved game? (y/n)\n");
             if (Console.ReadLine() == "y")
             {
-                Console.WriteLine("input name of saved character");
-                player.Chload(Console.ReadLine());
+                Console.Clear();
+                IO.O("input name of saved character\n");
+                player.Chload(IO.Itxt());
                 inv.invgen(player.name);
                 move.mapgen(player.name);
             }
@@ -35,24 +37,29 @@ namespace TBA_V2
                 inv.invgen("¦");
                 move.mapgen("¦");
             }
-            while (true)
+            while (player.alive)
             {
                 switch (move.map[move.x, move.y, 0])
                 {
                     case 0:
-                        Console.Write("do you want to \"save\"");
-                        if (move.map[move.y, move.x, 2] > 0) Console.Write(", \"loot\" the room");
-                        Console.WriteLine(", or go \"north\", \"west\", \"south\", or \"east\"?");
-                        switch (Console.ReadLine())
+                        Console.Clear();
+                        IO.O("do you want to \"save\"");
+                        if (move.map[move.y, move.x, 2] > 0) IO.O(", \"loot\" the room");
+                        IO.O(", or go \"north\", \"west\", \"south\", or \"east\"?\n");
+                        switch (IO.Itxt())
                         {
                             case "save":
+                                Console.Clear();
                                 player.Chsave();
                                 move.mapsave(player.name);
                                 inv.invsave(player.name);
+                                IO.O("Game saved sucsessfully");
+                                Console.Read();
                                 break;
                             case "loot":
                                 if (move.map[move.y, move.x, 2] > 0)
                                 {
+                                    Console.Clear();
                                     inv.loot();
                                 }
                                 else player.ill++;
@@ -69,6 +76,12 @@ namespace TBA_V2
                             case "east":
                                 move.East();
                                 break;
+                            case "map":
+                                move.show();
+                                break;
+                            default:
+                                player.ill++;
+                                break;
                         }
                         break;
                     case 2:
@@ -76,7 +89,21 @@ namespace TBA_V2
                         break;
                     case 1:
                         figt.mongen(move.map[move.x, move.y, 1]);
-                        figt.battle();
+                        switch (figt.battle())
+                        {
+                            case true:
+                                move.map[move.x, move.y, 0] = 0;
+                                move.map[move.x, move.y, 1] = 1;
+                                break;
+                            case false:
+                                move.reuturn();
+                                break;
+                            case null:
+                                player.alive = false;
+                                IO.O("you died");
+                                break;
+                        }
+                        
                         break;
                     default:
                         break;
