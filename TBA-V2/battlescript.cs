@@ -89,6 +89,10 @@ namespace TBA_V2
                                         Program.player.hp += 100;
                                         Program.inv.inv.RemoveAt(temp);
                                         break;
+                                    case 2:
+                                        if (res > 0.5F) hp -= r.Next(15, 20);
+                                        else hp -= r.Next(5);
+                                        break;
                                     default:
                                         break;
                                 }
