@@ -19,7 +19,8 @@ namespace TBA_V2
             { 2, 1 },
             { 2, 0.1F},
             { 0, 1},
-            { 2, 10}
+            { 2, 10},
+            { 0, 15}
         };
         public string[] names =
         {
@@ -30,7 +31,8 @@ namespace TBA_V2
             "Small Heal",
             "Smaller Heal",
             "HealthKit",
-            "Stimpack"
+            "Stimpack",
+            "spear"
         };
 
         public List<int> inv = new List<int>();
@@ -73,7 +75,11 @@ namespace TBA_V2
             {
 
                 IO.O("do you want " + names[loot] + "?\n");
-                if (IO.Itxt() == "y") inv.Add(loot);
+                if (IO.Itxt() == "y")
+                {
+                    if (inv[0] == 2) inv.Clear();
+                    inv.Add(loot);
+                }
             }
             else if (inv.Count() > maxinv)
             {
