@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,15 +30,16 @@ namespace TBA_V2
         {
             int[] wheights =
             {
-                12,
-                12,
+                9,
+                9,
                 0,
                 5,
-                10,
+                9,
                 4,
-                32,
+                25,
                 20,
-                10,//this is for armour
+                7,
+                8,//this is for armour
                 4//this is for nothing
             };
             int totw = 0;
