@@ -103,7 +103,7 @@ namespace TBA_V2
                     inv.Add(loot);
                 }
             }
-            Program.move.map[Program.move.x, Program.move.y, 2]--;
+            Program.move.map[Program.move.x, Program.move.y, Program.move.z, 2]--;
         }
     }
 }
