@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace TBA_V2
@@ -14,7 +15,12 @@ namespace TBA_V2
         public static battlescript figt = new battlescript();
         static void Main()
         {
-            IO.O("do you want to load a saved game? (y/n)\n");
+            Console.OutputEncoding = Encoding.Unicode;
+            move.mapgen("¦");
+            IO.Refresh("");
+            IO.Map();
+            Console.ReadKey();
+            /*IO.O("do you want to load a saved game? (y/n)\n");
             if (Console.ReadLine() == "y")
             {
                 Console.Clear();
@@ -109,7 +115,7 @@ namespace TBA_V2
                         break;
                 }
             }
-
+            */
         }
     }
 }
