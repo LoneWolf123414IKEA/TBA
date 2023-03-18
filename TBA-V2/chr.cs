@@ -9,7 +9,7 @@ namespace TBA_V2
     internal class chr
     {
         public string name;
-        public float hp;
+        public float hp = 100;
         public float res;
         public int dmg;
         public int xp;
