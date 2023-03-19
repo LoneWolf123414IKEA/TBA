@@ -39,7 +39,6 @@ namespace TBA_V2
                 25,
                 20,
                 7,
-                8,//this is for armour
                 4//this is for nothing
             };
             int totw = 0;
