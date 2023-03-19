@@ -83,7 +83,7 @@ namespace TBA_V2
                         map[x1, y1, 2, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 2, 0] == 0) map[x1, y1, 2, 1] = 1;
                         else map[x1, y1, 2, 1] = rand.wh(new int[] { 0, 1, 6, 3 });
-                        map[x1, y1, 2, 2] = rand.wh(new int[] {0, 1, 5, 10, 35, 4, 1 });
+                        map[x1, y1, 2, 2] = rand.wh(new int[] { 0, 1, 5, 10, 35, 4, 1 });
                         map[x1, y1, 2, 3] = 0;
                     }
                 }
@@ -94,7 +94,7 @@ namespace TBA_V2
                     {
                         map[x1, y1, 3, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 3, 0] == 0) map[x1, y1, 3, 1] = 1;
-                        else map[x1, y1, 3, 1] = rand.wh(new int[] { 0, 0, 1, 6, 3});
+                        else map[x1, y1, 3, 1] = rand.wh(new int[] { 0, 0, 1, 6, 3 });
                         map[x1, y1, 3, 2] = rand.wh(new int[] { 1, 0, 0, 1, 2, 10, 20, 38, 10 });
                         map[x1, y1, 3, 3] = 0;
                     }
@@ -127,132 +127,210 @@ namespace TBA_V2
                 for (int y1 = 0; y1 < 260; y1++)
                 {
                     for (int x1 = 0; x1 < 260; x1++)
-                    {/*
-                        map[x1, y1, 0] = mapl.Read() - '0';
-                        map[x1, y1, 1] = mapl.Read() - '0';
-                        map[x1, y1, 2] = mapl.Read() - '0';
-                        map[x1, y1, 3] = mapl.Read() - '0';
-
-                    }*/
+                    {
+                        map[x1, y1, 0, 0] = mapl.Read() - '0';
+                        map[x1, y1, 0, 1] = mapl.Read() - '0';
+                        map[x1, y1, 0, 2] = mapl.Read() - '0';
+                        map[x1, y1, 0, 3] = mapl.Read() - '0';
+                        map[x1, y1, 0, 4] = mapl.Read() - '0';
                     }
-                    mapl.ReadLine();
-                    y = int.Parse(mapl.ReadLine());
-                    x = int.Parse(mapl.ReadLine());
-                    lastx = int.Parse(mapl.ReadLine());
-                    lasty = int.Parse(mapl.ReadLine());
-                    mapl.Close();
                 }
+                mapl.ReadLine();
+                for (int y1 = 0; y1 < 260; y1++)
+                {
+                    for (int x1 = 0; x1 < 260; x1++)
+                    {
+                        map[x1, y1, 1, 0] = mapl.Read() - '0';
+                        map[x1, y1, 1, 1] = mapl.Read() - '0';
+                        map[x1, y1, 1, 2] = mapl.Read() - '0';
+                        map[x1, y1, 1, 3] = mapl.Read() - '0';
+                        map[x1, y1, 1, 4] = mapl.Read() - '0';
+                    }
+                }
+                mapl.ReadLine();
+                for (int y1 = 0; y1 < 260; y1++)
+                {
+                    for (int x1 = 0; x1 < 260; x1++)
+                    {
+                        map[x1, y1, 2, 0] = mapl.Read() - '0';
+                        map[x1, y1, 2, 1] = mapl.Read() - '0';
+                        map[x1, y1, 2, 2] = mapl.Read() - '0';
+                        map[x1, y1, 2, 3] = mapl.Read() - '0';
+                        map[x1, y1, 2, 4] = mapl.Read() - '0';
+                    }
+                }
+                mapl.ReadLine();
+                for (int y1 = 0; y1 < 260; y1++)
+                {
+                    for (int x1 = 0; x1 < 260; x1++)
+                    {
+                        map[x1, y1, 3, 0] = mapl.Read() - '0';
+                        map[x1, y1, 3, 1] = mapl.Read() - '0';
+                        map[x1, y1, 3, 2] = mapl.Read() - '0';
+                        map[x1, y1, 3, 3] = mapl.Read() - '0';
+                        map[x1, y1, 3, 4] = mapl.Read() - '0';
+                    }
+                }
+                mapl.ReadLine();
+                y = int.Parse(mapl.ReadLine());
+                x = int.Parse(mapl.ReadLine());
+                lastx = int.Parse(mapl.ReadLine());
+                lasty = int.Parse(mapl.ReadLine());
+                mapl.Close();
 
             }
         }
-            /*public void mapsave(string name)
+        public void mapsave(string name)
             {
                 StreamWriter Mps = new StreamWriter(name + ".map");
-                foreach (int i in map)
-                {
-                    Mps.Write(i);
-                }
-                Mps.Write('\n');
-                Mps.WriteLine(y);
-                Mps.WriteLine(x);
-                Mps.WriteLine(lastx);
-                Mps.WriteLine(lasty);
-                Mps.Close();
-            }
-            public void North()
+            for (int y1 = 0; y1 < 260; y1++)
             {
-                if (x != 0)
+                for (int x1 = 0; x1 < 260; x1++)
                 {
-                    if (map[x - 1, y, 0] == 2)
-                    {
-                        Program.player.ill++;
-                    }
-                    else
-                    {
-                        lastx = x;
-                        x--;
-                        map[x, y, 3] = 1;
-                        Program.player.spll++;
-                    }
+                    Mps.Write(map[x1, y1, 0, 0]);
+                    Mps.Write(map[x1, y1, 0, 1]);
+                    Mps.Write(map[x1, y1, 0, 2]);
+                    Mps.Write(map[x1, y1, 0, 3]);
+                    Mps.Write(map[x1, y1, 0, 4]);
+                }
+            }
+            Mps.Write('\n');
+            for (int y1 = 0; y1 < 260; y1++)
+            {
+                for (int x1 = 0; x1 < 260; x1++)
+                {
+                    Mps.Write(map[x1, y1, 0, 0]);
+                    Mps.Write(map[x1, y1, 0, 1]);
+                    Mps.Write(map[x1, y1, 0, 2]);
+                    Mps.Write(map[x1, y1, 0, 3]);
+                    Mps.Write(map[x1, y1, 0, 4]);
+                }
+            }
+            Mps.Write('\n');
+            for (int y1 = 0; y1 < 260; y1++)
+            {
+                for (int x1 = 0; x1 < 260; x1++)
+                {
+                    Mps.Write(map[x1, y1, 0, 0]);
+                    Mps.Write(map[x1, y1, 0, 1]);
+                    Mps.Write(map[x1, y1, 0, 2]);
+                    Mps.Write(map[x1, y1, 0, 3]);
+                    Mps.Write(map[x1, y1, 0, 4]);
+                }
+            }
+            Mps.Write('\n');
+            for (int y1 = 0; y1 < 260; y1++)
+            {
+                for (int x1 = 0; x1 < 260; x1++)
+                {
+                    Mps.Write(map[x1, y1, 0, 0]);
+                    Mps.Write(map[x1, y1, 0, 1]);
+                    Mps.Write(map[x1, y1, 0, 2]);
+                    Mps.Write(map[x1, y1, 0, 3]);
+                    Mps.Write(map[x1, y1, 0, 4]);
+                }
+            }
+            Mps.Write('\n');
+            Mps.WriteLine(y);
+            Mps.WriteLine(x);
+            Mps.WriteLine(lastx);
+            Mps.WriteLine(lasty);
+            Mps.Close();
+        }
+        public void North()
+        {
+            if (x != 0)
+            {
+                if (map[x - 1, y, z, 0] == 2)
+                {
+                    Program.player.ill++;
                 }
                 else
                 {
-                    Program.player.hp--;
-                    Program.player.ill++;
-                }
-
-            }
-            public void South()
-            {
-                if (x != 255)
-                {
-                    if (map[x + 1, y, 0] == 2)
-                    {
-                        Program.player.ill++;
-                    }
-                    else
-                    {
-                        lastx = x;
-                        x++;
-                        map[x, y, 3] = 1;
-                        Program.player.spll++;
-                    }
-                }
-                else
-                {
-                    Program.player.hp--;
-                    Program.player.ill++;
+                    lastx = x;
+                    x--;
+                    map[x, y, z, 3] = 1;
+                    Program.player.spll++;
                 }
             }
-            public void East()
+            else
             {
-                if (y != 255)
-                {
-                    if (map[x, y + 1, 0] == 2)
-                    {
-                        Program.player.ill++;
-                    }
-                    else
-                    {
-                        lasty = y;
-                        y++;
-                        map[x, y, 3] = 1;
-                        Program.player.spll++;
-                    }
-                }
-                else
-                {
-                    Program.player.hp--;
-                    Program.player.ill++;
-                }
-            }
-            public void West()
-            {
-                if (y != 0)
-                {
-                    if (map[x, y - 1, 0] == 2)
-                    {
-                        Program.player.ill++;
-                    }
-                    else
-                    {
-                        lasty = y;
-                        y--;
-                        map[x, y, 3] = 1;
-                        Program.player.spll++;
-                    }
-                }
-                else
-                {
-                    Program.player.hp--;
-                    Program.player.ill++;
-                }
+                Program.player.rhhp--;
+                Program.player.ill++;
             }
 
-            public void reuturn()
+        }
+        public void South()
+        {
+            if (x != 255)
             {
-                x = lastx;
-                y = lasty;
-            }*/
+                if (map[x + 1, y, z, 0] == 2)
+                {
+                    Program.player.ill++;
+                }
+                else
+                {
+                    lastx = x;
+                    x++;
+                    map[x, y, z, 3] = 1;
+                    Program.player.spll++;
+                }
+            }
+            else
+            {
+                Program.player.rhhp--;
+                Program.player.ill++;
+            }
+        }
+        public void East()
+        {
+            if (y != 255)
+            {
+                if (map[x, y + 1, z, 0] == 2)
+                {
+                    Program.player.ill++;
+                }
+                else
+                {
+                    lasty = y;
+                    y++;
+                    map[x, y, z, 3] = 1;
+                    Program.player.spll++;
+                }
+            }
+            else
+            {
+                Program.player.rhhp--;
+                Program.player.ill++;
+            }
+        }
+        public void West()
+        {
+            if (y != 0)
+            {
+                if (map[x, y - 1, z, 0] == 2)
+                {
+                    Program.player.ill++;
+                }
+                else
+                {
+                    lasty = y;
+                    y--;
+                    map[x, y, z, 3] = 1;
+                    Program.player.spll++;
+                }
+            }
+            else
+            {
+                Program.player.rhhp--;
+                Program.player.ill++;
+            }
+        }
+        public void reuturn()
+        {
+            x = lastx;
+            y = lasty;
+            IO.Map();
+        }
     }
 }
