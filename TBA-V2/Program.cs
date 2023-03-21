@@ -15,6 +15,9 @@ namespace TBA_V2
         public static battlescript figt = new battlescript();
         static void Main()
         {
+            items.itemboot();
+            items.NewItem();
+            /*
             Console.OutputEncoding = Encoding.Unicode;
             move.mapgen("¦");
             IO.Refresh("");
@@ -29,6 +32,7 @@ namespace TBA_V2
                 IO.Refresh("");
                 IO.Map();
             }
+            */
         }
     }
 }

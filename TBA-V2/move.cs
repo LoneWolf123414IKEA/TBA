@@ -255,7 +255,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.rhhp--;
+                Program.player.hp[6]--;
                 Program.player.ill++;
             }
 
@@ -278,7 +278,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.rhhp--;
+                Program.player.hp[6]--;
                 Program.player.ill++;
             }
         }
@@ -300,7 +300,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.rhhp--;
+                Program.player.hp[6]--;
                 Program.player.ill++;
             }
         }
@@ -322,7 +322,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.rhhp--;
+                Program.player.hp[6]--;
                 Program.player.ill++;
             }
         }

@@ -9,7 +9,7 @@ namespace TBA_V2
     internal class chr
     {
         public string name = "";
-        public float[] hp = 
+        public float[] hp =
         {
             100,//h
             100,//t
@@ -21,44 +21,44 @@ namespace TBA_V2
             100,//rl
             100,//lf
             100//rf
-        }
-        public int?[] slotfilled = 
+        };
+        public int?[] slotfilled =
         {
-            null,//undercoif
-            null,//chain coif
-            null,//torso underarmour
-            null,//torso chain
-            null,//left arm underarmour
-            null,//left arm chain
-            null,//right arm underarmour
-            null,//right arm chain
-            null,//left under gauntlet/glove
-            null,//right under gauntlet/glove
-            null,//legs underarmour
-            null,//legs chain
-            null,//left shoe
-            null,//right shoe
+            null,//undercoif                0
+            null,//chain coif               1
+            null,//torso underarmour        2    
+            null,//torso chain              3
+            null,//left arm underarmour     4
+            null,//left arm chain           5
+            null,//right arm underarmour    6
+            null,//right arm chain          7
+            null,//left under gauntlet/glove  8
+            null,//right under gauntlet/glove 9
+            null,//legs underarmour         10
+            null,//legs chain               11
+            null,//left shoe                12
+            null,//right shoe               13    
             
-            null,//head - top
-            null,//head - under
-            null,//torso - front
-            null,//torso - back
-            null,//left rerebrace
-            null,//left vambrace
-            null,//right rerebrace
-            null,//right vambrace
-            null,//left gauntlet
-            null,//right gauntlet
-            null,//hips
-            null,//left thighs
-            null,//left calves
-            null,//right thighs
-            null,//right calves
-            null,//left heel
-            null,//left toes
-            null,//right heel
-            null//right toes
-        }
+            null,//head - top               14
+            null,//head - under             15
+            null,//torso - front            16
+            null,//torso - back             17
+            null,//left rerebrace           18
+            null,//left vambrace            19
+            null,//right rerebrace          20
+            null,//right vambrace           21
+            null,//left gauntlet            22
+            null,//right gauntlet           23
+            null,//hips                     24
+            null,//left thighs              25
+            null,//left calves              26
+            null,//right thighs             27
+            null,//right calves             28
+            null,//left heel                29
+            null,//left toes                30
+            null,//right heel               31
+            null//right toes                32
+        };
         public int dmgm;
         public int dmgo;
         public int xp;
@@ -81,7 +81,7 @@ namespace TBA_V2
             int i = 0;
             TextReader Chl = new StreamReader(nam);
             name = Chl.ReadLine();
-            hp = Chl.ReadLine().Split("¦").Select(float.Parse)
+            hp = Array.ConvertAll(Chl.ReadLine().Split("¦"), float.Parse);
             foreach (string j in Chl.ReadLine().Split("¦"))
             {
                 if (j == "N") slotfilled[i] = null;
@@ -108,12 +108,12 @@ namespace TBA_V2
             for (int i = 1; i < hp.Length; i++) Chs.Write("¦" + hp[i]);
             Chs.WriteLine();
             
-            Chs.Write(slotsfilled[0]);
-            for (int i = 1; i < slotsfilled.Lenth; i++) 
+            Chs.Write(slotfilled[0]);
+            for (int i = 1; i < slotfilled.Length; i++)
             {
-                if (slotsfilled[i] != null] Chs.Write("¦" + slotsfilled[i]);
+                if (slotfilled[i] != null) Chs.Write("¦" + slotfilled[i]);
                 else Chs.Write("¦N");
-            }
+        }
             Chs.WriteLine();
             
             Chs.WriteLine(dmgm);

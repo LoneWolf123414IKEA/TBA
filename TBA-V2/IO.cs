@@ -335,9 +335,9 @@ namespace TBA_V2
             switch (part)
             {
                 case "H":
-                    if (Program.player.hhp <= 0) return;
-                    else if (Program.player.hhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.hhp < 50) && (Program.player.hhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[0] <= 0) return;
+                    else if (Program.player.hp[0] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[0] < 50) && (Program.player.hp[0] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
                     Console.SetCursorPosition(95, 4);
                     Console.Write("        ▄████▄        ");
@@ -350,23 +350,24 @@ namespace TBA_V2
                     Console.SetCursorPosition(95, 8);
                     Console.Write("       ▀██████▀       ");
                     Console.SetCursorPosition(130, 6);
-                    if (Program.player.hhp == 100) Console.Write("00");
-                    else if (Program.player.hhp == 0) Console.Write("00");
-                    else if (Program.player.hhp < 10) Console.Write($"0{Program.player.hhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.hhp.ToString()[0] - '0'}{Program.player.hhp.ToString()[1] - '0'}");
-                    Console.SetCursorPosition(134, 6);
+                    if (Program.player.hp[0] == 100) Console.Write("00");
+                    else if (Program.player.hp[0] == 0) Console.Write("00");
+                    else if (Program.player.hp[0] < 10) Console.Write($"0{Program.player.hp[0].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[0].ToString()[0] - '0'}{Program.player.hp[0].ToString()[1] - '0'}");
+                    Console.SetCursorPosition(133, 6);
                     Console.ForegroundColor = GenFore;
-                    switch (Program.player.ha)
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[0] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[1] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[14] != null && Program.player.slotfilled[15] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[14] != null || Program.player.slotfilled[15] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "T":
-                    if (Program.player.thp <= 0) return;
-                    else if (Program.player.thp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.thp < 50) && (Program.player.thp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[1] <= 0) return;
+                    else if (Program.player.hp[1] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[1] < 50) && (Program.player.hp[1] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
                     Console.SetCursorPosition(104, 9);
                     Console.Write("▄▄▄▄");
@@ -389,23 +390,24 @@ namespace TBA_V2
                     Console.SetCursorPosition(101, 18);
                     Console.Write("▀▀▀████▀▀▀");
                     Console.SetCursorPosition(130, 7);
-                    if (Program.player.thp == 100) Console.Write("00");
-                    else if (Program.player.thp == 0) Console.Write("00");
-                    else if (Program.player.thp < 10) Console.Write($"0{Program.player.thp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.thp.ToString()[0] - '0'}{Program.player.thp.ToString()[1] - '0'}");
+                    if (Program.player.hp[1] == 100) Console.Write("00");
+                    else if (Program.player.hp[1] == 0) Console.Write("00");
+                    else if (Program.player.hp[1] < 10) Console.Write($"0{Program.player.hp[1].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[1].ToString()[0] - '0'}{Program.player.hp[1].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 7);
                     Console.ForegroundColor = GenFore;
-                    switch (Program.player.ta)
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[2] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[3] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[16] != null && Program.player.slotfilled[17] != null && Program.player.slotfilled[24] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[16] != null || Program.player.slotfilled[17] != null || Program.player.slotfilled[24] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "La":
-                    if (Program.player.lahp <= 0) return;
-                    else if (Program.player.lahp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.lahp < 50) && (Program.player.lahp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[2] <= 0) return;
+                    else if (Program.player.hp[2] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[2] < 50) && (Program.player.hp[2] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(98, 10);
@@ -425,23 +427,24 @@ namespace TBA_V2
                     Console.SetCursorPosition(96, 17);
                     Console.Write("▀▀");
                     Console.SetCursorPosition(130, 8);
-                    if (Program.player.lahp == 100) Console.Write("00");
-                    else if (Program.player.lahp == 0) Console.Write("00");
-                    else if (Program.player.lahp < 10) Console.Write($"0{Program.player.lahp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.lahp.ToString()[0] - '0'}{Program.player.lahp.ToString()[1] - '0'}");
+                    if (Program.player.hp[2] == 100) Console.Write("00");
+                    else if (Program.player.hp[2] == 0) Console.Write("00");
+                    else if (Program.player.hp[2] < 10) Console.Write($"0{Program.player.hp[2].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[2].ToString()[0] - '0'}{Program.player.hp[2].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 8);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[4] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[5] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[18] != null && Program.player.slotfilled[19] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[18] != null || Program.player.slotfilled[19] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "Ra":
-                    if (Program.player.rahp <= 0) return;
-                    else if (Program.player.rahp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.rahp < 50) && (Program.player.rahp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[3] <= 0) return;
+                    else if (Program.player.hp[3] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[3] < 50) && (Program.player.hp[3] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(113, 10);
@@ -461,67 +464,64 @@ namespace TBA_V2
                     Console.SetCursorPosition(114, 17);
                     Console.Write("▀▀");
                     Console.SetCursorPosition(130, 9);
-                    if (Program.player.rahp == 100) Console.Write("00");
-                    else if (Program.player.rahp == 0) Console.Write("00");
-                    else if (Program.player.rahp < 10) Console.Write($"0{Program.player.rahp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.rahp.ToString()[0] - '0'}{Program.player.rahp.ToString()[1] - '0'}");
+                    if (Program.player.hp[3] == 100) Console.Write("00");
+                    else if (Program.player.hp[3] == 0) Console.Write("00");
+                    else if (Program.player.hp[3] < 10) Console.Write($"0{Program.player.hp[3].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[3].ToString()[0] - '0'}{Program.player.hp[3].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 9);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[6] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[7] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[20] != null && Program.player.slotfilled[21] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[20] != null || Program.player.slotfilled[21] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "Lh":
-                    if (Program.player.lhhp <= 0) return;
-                    else if (Program.player.lhhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.lhhp < 50) && (Program.player.lhhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[4] <= 0) return;
+                    else if (Program.player.hp[4] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[4] < 50) && (Program.player.hp[4] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(96, 18);
                     Console.Write("██▌");
                     Console.SetCursorPosition(130, 10);
-                    if (Program.player.lhhp == 100) Console.Write("00");
-                    else if (Program.player.lhhp == 0) Console.Write("00");
-                    else if (Program.player.lhhp < 10) Console.Write($"0{Program.player.lhhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.lhhp.ToString()[0] - '0'}{Program.player.lhhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[4] == 100) Console.Write("00");
+                    else if (Program.player.hp[4] == 0) Console.Write("00");
+                    else if (Program.player.hp[4] < 10) Console.Write($"0{Program.player.hp[4].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[4].ToString()[0] - '0'}{Program.player.hp[4].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 10);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[8] != null) Console.Write("E|");
+                    else Console.Write("N|");
+                    if (Program.player.slotfilled[22] != null) Console.Write("E");
+                    else Console.Write("N");
                     break;
                 case "Rh":
-                    if (Program.player.rhhp <= 0) return;
-                    else if (Program.player.rhhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.rhhp < 50) && (Program.player.rhhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[5] <= 0) return;
+                    else if (Program.player.hp[5] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[5] < 50) && (Program.player.hp[5] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(113, 18);
                     Console.Write("▐██");
                     Console.SetCursorPosition(130, 11);
-                    if (Program.player.rhhp == 100) Console.Write("00");
-                    else if (Program.player.rhhp == 0) Console.Write("00");
-                    else if (Program.player.rhhp < 10) Console.Write($"0{Program.player.rhhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.rhhp.ToString()[0] - '0'}{Program.player.rhhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[5] == 100) Console.Write("00");
+                    else if (Program.player.hp[5] == 0) Console.Write("00");
+                    else if (Program.player.hp[5] < 10) Console.Write($"0{Program.player.hp[5].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[5].ToString()[0] - '0'}{Program.player.hp[5].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 11);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[9] != null) Console.Write("E|");
+                    else Console.Write("N|");
+                    if (Program.player.slotfilled[23] != null) Console.Write("E");
+                    else Console.Write("N");
                     break;
                 case "Ll":
-                    if (Program.player.llhp <= 0) return;
-                    else if (Program.player.llhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.llhp < 50) && (Program.player.llhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[6] <= 0) return;
+                    else if (Program.player.hp[6] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[6] < 50) && (Program.player.hp[6] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(100, 19);
@@ -541,23 +541,24 @@ namespace TBA_V2
                     Console.SetCursorPosition(101, 26);
                     Console.Write("▀▀▀");
                     Console.SetCursorPosition(130, 12);
-                    if (Program.player.llhp == 100) Console.Write("00");
-                    else if (Program.player.llhp == 0) Console.Write("00");
-                    else if (Program.player.llhp < 10) Console.Write($"0{Program.player.llhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.llhp.ToString()[0] - '0'}{Program.player.llhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[6] == 100) Console.Write("00");
+                    else if (Program.player.hp[6] == 0) Console.Write("00");
+                    else if (Program.player.hp[6] < 10) Console.Write($"0{Program.player.hp[6].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[6].ToString()[0] - '0'}{Program.player.hp[6].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 12);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[10] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[11] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[25] != null && Program.player.slotfilled[26] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[25] != null || Program.player.slotfilled[26] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "Rl":
-                    if (Program.player.rlhp <= 0) return;
-                    else if (Program.player.rlhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.rlhp < 50) && (Program.player.rlhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[7] <= 0) return;
+                    else if (Program.player.hp[7] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[7] < 50) && (Program.player.hp[7] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(107, 19);
@@ -577,62 +578,61 @@ namespace TBA_V2
                     Console.SetCursorPosition(108, 26);
                     Console.Write("▀▀▀");
                     Console.SetCursorPosition(130, 13);
-                    if (Program.player.rlhp == 100) Console.Write("00");
-                    else if (Program.player.rlhp == 0) Console.Write("00");
-                    else if (Program.player.rlhp < 10) Console.Write($"0{Program.player.rlhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.rlhp.ToString()[0] - '0'}{Program.player.rlhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[7] == 100) Console.Write("00");
+                    else if (Program.player.hp[7] == 0) Console.Write("00");
+                    else if (Program.player.hp[7] < 10) Console.Write($"0{Program.player.hp[7].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[7].ToString()[0] - '0'}{Program.player.hp[7].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 13);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[10] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[11] != null) Console.Write("E");
+                    else Console.Write("N");
+                    if (Program.player.slotfilled[27] != null && Program.player.slotfilled[28] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[27] != null || Program.player.slotfilled[28] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "Lf":
-                    if (Program.player.lfhp <= 0) return;
-                    else if (Program.player.lfhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.lfhp < 50) && (Program.player.lfhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[8] <= 0) return;
+                    else if (Program.player.hp[8] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[8] < 50) && (Program.player.hp[8] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(100, 27);
                     Console.Write("████▌");
                     Console.SetCursorPosition(130, 14);
-                    if (Program.player.lfhp == 100) Console.Write("00");
-                    else if (Program.player.lfhp == 0) Console.Write("00");
-                    else if (Program.player.lfhp < 10) Console.Write($"0{Program.player.lfhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.lfhp.ToString()[0] - '0'}{Program.player.lfhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[8] == 100) Console.Write("00");
+                    else if (Program.player.hp[8] == 0) Console.Write("00");
+                    else if (Program.player.hp[8] < 10) Console.Write($"0{Program.player.hp[8].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[8].ToString()[0] - '0'}{Program.player.hp[8].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 14);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[12] != null) Console.Write("E|");
+                    else Console.Write("N|");
+                    if (Program.player.slotfilled[29] != null && Program.player.slotfilled[30] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[29] != null || Program.player.slotfilled[30] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 case "Rf":
-                    if (Program.player.rfhp <= 0) return;
-                    else if (Program.player.rfhp > 50) Console.ForegroundColor = ChrFull;
-                    else if ((Program.player.rfhp < 50) && (Program.player.rfhp > 15)) Console.ForegroundColor = ChrHalf;
+                    if (Program.player.hp[9] <= 0) return;
+                    else if (Program.player.hp[9] > 50) Console.ForegroundColor = ChrFull;
+                    else if ((Program.player.hp[9] < 50) && (Program.player.hp[9] > 15)) Console.ForegroundColor = ChrHalf;
                     else Console.ForegroundColor = ChrCrit;
 
                     Console.SetCursorPosition(107, 27);
                     Console.Write("▐████");
                     Console.SetCursorPosition(130, 15);
-                    if (Program.player.rfhp == 100) Console.Write("00");
-                    else if (Program.player.rfhp == 0) Console.Write("00");
-                    else if (Program.player.rfhp < 10) Console.Write($"0{Program.player.rfhp.ToString()[0] - '0'}");
-                    else Console.Write($"{Program.player.rfhp.ToString()[0] - '0'}{Program.player.rfhp.ToString()[1] - '0'}");
+                    if (Program.player.hp[9] == 100) Console.Write("00");
+                    else if (Program.player.hp[9] == 0) Console.Write("00");
+                    else if (Program.player.hp[9] < 10) Console.Write($"0{Program.player.hp[9].ToString()[0] - '0'}");
+                    else Console.Write($"{Program.player.hp[9].ToString()[0] - '0'}{Program.player.hp[9].ToString()[1] - '0'}");
                     Console.SetCursorPosition(134, 15);
                     Console.ForegroundColor = GenFore;
-                    switch ("")
-                    {
-                        default:
-                            Console.Write("N");
-                            break;
-                    }
+                    if (Program.player.slotfilled[13] != null) Console.Write("E|");
+                    else Console.Write("N|");
+                    if (Program.player.slotfilled[31] != null && Program.player.slotfilled[32] != null) Console.Write("E");
+                    else if (Program.player.slotfilled[31] != null || Program.player.slotfilled[32] != null) Console.Write("H");
+                    else Console.Write("N");
                     break;
                 default:
                     break;

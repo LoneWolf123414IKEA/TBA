@@ -14,16 +14,17 @@ namespace TBA_V2
         public string btlscript;
         public string eatscript;
         public string eqpscript;
+        public string stx;
+        public string btx;
+        public int x;
+        public int y;
+        public int z;
         public void InvUse()
         {
-            for (i = 0; i > invscript.Length; i++)
+            for (int i = 0; i > invscript.Length; i++)
             {
                 switch (invscript[i])
                 {
-                    case :
-                        break;
-                    case :
-                        break;
                     default:
                         break;
                 }
@@ -31,14 +32,10 @@ namespace TBA_V2
         }
         public void BtlUse()
         {
-            for (i = 0; i > btlscript.Length; i++)
+            for (int i = 0; i > btlscript.Length; i++)
             {
                 switch (btlscript[i])
                 {
-                    case :
-                        break;
-                    case :
-                        break;
                     default:
                         break;
                 }
@@ -46,14 +43,10 @@ namespace TBA_V2
         }
         public void EatItm()
         {
-            for (i = 0; i > eatscript.Length; i++)
+            for (int i = 0; i > eatscript.Length; i++)
             {
                 switch (eatscript[i])
                 {
-                    case :
-                        break;
-                    case :
-                        break;
                     default:
                         break;
                 }
@@ -63,127 +56,130 @@ namespace TBA_V2
         {
             if (!eqp)
             {
-                switch (eqpscript[i])
+                for (int i = 0; i > eqpscript.Length; i++)
                 {
-                    case 'F':
-                        i++
-                        switch (eqpscript[i])
-                        {
-                            case '0':
-                                Program.player.slotfilled[0] = null;
-                                break;
-                            case '1':
-                                Program.player.slotfilled[1] = null;
-                                break;
-                            case '2':
-                                Program.player.slotfilled[2] = null;
-                                break;
-                            case '3':
-                                Program.player.slotfilled[3] = null;
-                                break;
-                            case '4':
-                                Program.player.slotfilled[4] = null;
-                                break;
-                            case '5':
-                                Program.player.slotfilled[5] = null;
-                                break;
-                            case '6':
-                                Program.player.slotfilled[6] = null;
-                                break;
-                            case '7':
-                                Program.player.slotfilled[7] = null;
-                                break;
-                            case '8':
-                                Program.player.slotfilled[8] = null;
-                                break;
-                            case '9':
-                                Program.player.slotfilled[9] = null;
-                                break;
-                            case 'a':
-                                Program.player.slotfilled[10] = null;
-                                break;
-                            case 'b':
-                                Program.player.slotfilled[11] = null;
-                                break;
-                            case 'c':
-                                Program.player.slotfilled[12] = null;
-                                break;
-                            case 'd':
-                                Program.player.slotfilled[13] = null;
-                                break;
-                            case 'e':
-                                Program.player.slotfilled[14] = null;
-                                break;
-                            case 'f':
-                                Program.player.slotfilled[15] = null;
-                                break;
-                            case 'g':
-                                Program.player.slotfilled[16] = null;
-                                break;
-                            case 'h':
-                                Program.player.slotfilled[17] = null;
-                                break;
-                            case 'i':
-                                Program.player.slotfilled[18] = null;
-                                break;
-                            case 'j':
-                                Program.player.slotfilled[19] = null;
-                                break;
-                            case 'k':
-                                Program.player.slotfilled[20] = null;
-                                break;
-                            case 'l':
-                                Program.player.slotfilled[21] = null;
-                                break;
-                            case 'm':
-                                Program.player.slotfilled[22] = null;
-                                break;
-                            case 'n':
-                                Program.player.slotfilled[23] = null;
-                                break;
-                            case 'o':
-                                Program.player.slotfilled[24] = null;
-                                break;
-                            case 'p':
-                                Program.player.slotfilled[25] = null;
-                                break;
-                            case 'q':
-                                Program.player.slotfilled[26] = null;
-                                break;
-                            case 'r':
-                                Program.player.slotfilled[27] = null;
-                                break;
-                            case 's':
-                                Program.player.slotfilled[28] = null;
-                                break;
-                            case 't':
-                                Program.player.slotfilled[29] = null;
-                                break;
-                            case 'u':
-                                Program.player.slotfilled[30] = null;
-                                break;
-                            case 'v':
-                                Program.player.slotfilled[31] = null;
-                                break;
-                            case 'w':
-                                Program.player.slotfilled[32] = null;
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    default:
-                        break;
+                    switch (eqpscript[i])
+                    {
+                        case 'F':
+                            i++;
+                            switch (eqpscript[i])
+                            {
+                                case '0':
+                                    Program.player.slotfilled[0] = null;
+                                    break;
+                                case '1':
+                                    Program.player.slotfilled[1] = null;
+                                    break;
+                                case '2':
+                                    Program.player.slotfilled[2] = null;
+                                    break;
+                                case '3':
+                                    Program.player.slotfilled[3] = null;
+                                    break;
+                                case '4':
+                                    Program.player.slotfilled[4] = null;
+                                    break;
+                                case '5':
+                                    Program.player.slotfilled[5] = null;
+                                    break;
+                                case '6':
+                                    Program.player.slotfilled[6] = null;
+                                    break;
+                                case '7':
+                                    Program.player.slotfilled[7] = null;
+                                    break;
+                                case '8':
+                                    Program.player.slotfilled[8] = null;
+                                    break;
+                                case '9':
+                                    Program.player.slotfilled[9] = null;
+                                    break;
+                                case 'a':
+                                    Program.player.slotfilled[10] = null;
+                                    break;
+                                case 'b':
+                                    Program.player.slotfilled[11] = null;
+                                    break;
+                                case 'c':
+                                    Program.player.slotfilled[12] = null;
+                                    break;
+                                case 'd':
+                                    Program.player.slotfilled[13] = null;
+                                    break;
+                                case 'e':
+                                    Program.player.slotfilled[14] = null;
+                                    break;
+                                case 'f':
+                                    Program.player.slotfilled[15] = null;
+                                    break;
+                                case 'g':
+                                    Program.player.slotfilled[16] = null;
+                                    break;
+                                case 'h':
+                                    Program.player.slotfilled[17] = null;
+                                    break;
+                                case 'i':
+                                    Program.player.slotfilled[18] = null;
+                                    break;
+                                case 'j':
+                                    Program.player.slotfilled[19] = null;
+                                    break;
+                                case 'k':
+                                    Program.player.slotfilled[20] = null;
+                                    break;
+                                case 'l':
+                                    Program.player.slotfilled[21] = null;
+                                    break;
+                                case 'm':
+                                    Program.player.slotfilled[22] = null;
+                                    break;
+                                case 'n':
+                                    Program.player.slotfilled[23] = null;
+                                    break;
+                                case 'o':
+                                    Program.player.slotfilled[24] = null;
+                                    break;
+                                case 'p':
+                                    Program.player.slotfilled[25] = null;
+                                    break;
+                                case 'q':
+                                    Program.player.slotfilled[26] = null;
+                                    break;
+                                case 'r':
+                                    Program.player.slotfilled[27] = null;
+                                    break;
+                                case 's':
+                                    Program.player.slotfilled[28] = null;
+                                    break;
+                                case 't':
+                                    Program.player.slotfilled[29] = null;
+                                    break;
+                                case 'u':
+                                    Program.player.slotfilled[30] = null;
+                                    break;
+                                case 'v':
+                                    Program.player.slotfilled[31] = null;
+                                    break;
+                                case 'w':
+                                    Program.player.slotfilled[32] = null;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 return;
             }
-            string CheckFor = "";
-            for (i = 0; i > eqpscript.Length; i++)
+            string Checkfor = "";
+            for (int i = 0; i > eqpscript.Length; i++)
             {
                 switch (eqpscript[i])
                 {
                     case 'F':
-                        i++
+                        i++;
                         switch (eqpscript[i])
                         {
                             case '0':
@@ -422,7 +418,7 @@ namespace TBA_V2
                         }
                         break;
                     case 'R':
-                        i++
+                        i++;
                         switch (eqpscript[i])
                         {
                             case '0':
@@ -504,9 +500,9 @@ namespace TBA_V2
                                 }
                                 break;
                             case ';':
-                                foreach (char i in CheckFor) 
+                                foreach (char j in Checkfor) 
                                 {
-                                    switch (i)
+                                    switch (j)
                                     {
                                         case '0':
                                             Program.player.slotfilled[0] = id;
@@ -611,6 +607,7 @@ namespace TBA_V2
                                             break;
                                     }
                                 }
+                                break;
                             default:
                                 break;
                         }
