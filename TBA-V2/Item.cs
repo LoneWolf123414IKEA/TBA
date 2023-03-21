@@ -8,6 +8,7 @@ namespace TBA_V2
 {
     internal class Item
     {
+        public string Name;
         public int id;
         public string invscript;
         public string btlscript;
