@@ -9,26 +9,56 @@ namespace TBA_V2
     internal class chr
     {
         public string name = "";
-        public float hhp = 100;
-        public float thp = 100;
-        public float lahp = 100;
-        public float rahp = 100;
-        public float lhhp = 100;
-        public float rhhp = 100;
-        public float llhp = 100;
-        public float rlhp = 100;
-        public float lfhp = 100;
-        public float rfhp = 100;
-        public string ha;
-        public string ta;
-        public string laa;
-        public string raa;
-        public string lha;
-        public string rha;
-        public string rla;
-        public string lla;
-        public string rfa;
-        public string lfa;
+        public float[] hp = 
+        {
+            100,//h
+            100,//t
+            100,//la
+            100,//ra
+            100,//lh
+            100,//rh
+            100,//ll
+            100,//rl
+            100,//lf
+            100//rf
+        }
+        public int?[] slotfilled = 
+        {
+            null,//undercoif
+            null,//chain coif
+            null,//torso underarmour
+            null,//torso chain
+            null,//left arm underarmour
+            null,//left arm chain
+            null,//right arm underarmour
+            null,//right arm chain
+            null,//left under gauntlet/glove
+            null,//right under gauntlet/glove
+            null,//legs underarmour
+            null,//legs chain
+            null,//left shoe
+            null,//right shoe
+            
+            null,//head - top
+            null,//head - under
+            null,//torso - front
+            null,//torso - back
+            null,//left rerebrace
+            null,//left vambrace
+            null,//right rerebrace
+            null,//right vambrace
+            null,//left gauntlet
+            null,//right gauntlet
+            null,//hips
+            null,//left thighs
+            null,//left calves
+            null,//right thighs
+            null,//right calves
+            null,//left heel
+            null,//left toes
+            null,//right heel
+            null//right toes
+        }
         public int dmgm;
         public int dmgo;
         public int xp;
@@ -38,31 +68,6 @@ namespace TBA_V2
         public bool alive = true;
         public void Chgen()
         {
-
-
-
-            hhp = 100;
-            thp = 100;
-            lahp = 100;
-            rahp = 100;
-            lhhp = 100;
-            rhhp = 100;
-            llhp = 100;
-            rlhp = 100;
-            lfhp = 100;
-            rfhp = 100;
-
-            ha = "";
-            ta = "";
-            laa = "";
-            raa = "";
-            lha = "";
-            rha = "";
-            lla = "";
-            rla = "";
-            lfa = "";
-            rfa = "";
-
             dmgm = 5;
             dmgo = 2;
 
@@ -73,29 +78,17 @@ namespace TBA_V2
         }
         public void Chload(string nam)
         {
+            int i = 0;
             TextReader Chl = new StreamReader(nam);
             name = Chl.ReadLine();
-            hhp = float.Parse(Chl.ReadLine());
-            thp = float.Parse(Chl.ReadLine());
-            lahp = float.Parse(Chl.ReadLine());
-            rahp = float.Parse(Chl.ReadLine());
-            lhhp = float.Parse(Chl.ReadLine());
-            rhhp = float.Parse(Chl.ReadLine());
-            llhp = float.Parse(Chl.ReadLine());
-            rlhp = float.Parse(Chl.ReadLine());
-            lfhp = float.Parse(Chl.ReadLine());
-            rfhp = float.Parse(Chl.ReadLine());
-
-            ha = Chl.ReadLine();
-            ta = Chl.ReadLine();
-            laa = Chl.ReadLine();
-            raa = Chl.ReadLine();
-            lha = Chl.ReadLine();
-            rha = Chl.ReadLine();
-            lla = Chl.ReadLine();
-            rla = Chl.ReadLine();
-            lfa = Chl.ReadLine();
-            rfa = Chl.ReadLine();
+            hp = Chl.ReadLine().Split("¦").Select(float.Parse)
+            foreach (string j in Chl.ReadLine().Split("¦"))
+            {
+                if (j == "N") slotfilled[i] = null;
+                else slotfilled[i] = int.Parse(j);
+                i++;
+            }
+                
 
             dmgm = int.Parse(Chl.ReadLine());
             dmgo = int.Parse(Chl.ReadLine());
@@ -110,32 +103,22 @@ namespace TBA_V2
         {
             StreamWriter Chs = new StreamWriter(name + ".save");
             Chs.WriteLine(name);
-
-            Chs.WriteLine(hhp);
-            Chs.WriteLine(thp);
-            Chs.WriteLine(lahp);
-            Chs.WriteLine(rahp);
-            Chs.WriteLine(lhhp);
-            Chs.WriteLine(rhhp);
-            Chs.WriteLine(llhp);
-            Chs.WriteLine(rlhp);
-            Chs.WriteLine(lfhp);
-            Chs.WriteLine(rfhp);
-
-            Chs.WriteLine(ha);
-            Chs.WriteLine(ta);
-            Chs.WriteLine(laa);
-            Chs.WriteLine(raa);
-            Chs.WriteLine(lha);
-            Chs.WriteLine(rha);
-            Chs.WriteLine(lla);
-            Chs.WriteLine(rla);
-            Chs.WriteLine(lfa);
-            Chs.WriteLine(rfa);
-
+            
+            Chs.Write(hp[0]);
+            for (int i = 1; i < hp.Length; i++) Chs.Write("¦" + hp[i]);
+            Chs.WriteLine();
+            
+            Chs.Write(slotsfilled[0]);
+            for (int i = 1; i < slotsfilled.Lenth; i++) 
+            {
+                if (slotsfilled[i] != null] Chs.Write("¦" + slotsfilled[i]);
+                else Chs.Write("¦N");
+            }
+            Chs.WriteLine();
+            
             Chs.WriteLine(dmgm);
             Chs.WriteLine(dmgo);
-
+            
             Chs.WriteLine(xp);
             Chs.WriteLine(ill);
             Chs.WriteLine(spll);
