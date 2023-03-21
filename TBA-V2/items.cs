@@ -21,36 +21,6 @@ namespace TBA_V2
             { 0, 1},
             { 2, 10},
             { 0, 15},
-            { 3, 0},
-            { 3, 1},
-            { 3, 2},
-            { 3, 3},
-            { 3, 4},
-            { 3, 5},
-            { 3, 6},
-            { 3, 7},
-            { 3, 8},
-            { 3, 9},
-            { 3, 10},
-            { 3, 11},
-            { 3, 12},
-            { 3, 13},
-            { 3, 14},
-            { 3, 15},
-            { 3, 16},
-            { 3, 17},
-            { 3, 18},
-            { 3, 19},
-            { 3, 20},
-            { 3, 21},
-            { 3, 22},
-            { 3, 23},
-            { 3, 24},
-            { 3, 25},
-            { 3, 26},
-            { 3, 27},
-            { 3, 28},
-            { 3, 29}
         };
         public string[] names =
         {
@@ -63,41 +33,33 @@ namespace TBA_V2
             "HealthKit",
             "Stimpack",
             "spear",
-            "Cloth Coif",
-            "Mail Coif",
-            "Kettle Helm",
-            "Brigandine",
-            "Hauberk",
-            "Cuirass",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
         };
-        public Armour[] Armours =
+        public static Item[] ItemList;
+        public static void itemboot()
         {
-
-        };
+            StreamReader Index = new Streamreader("Data\Items\Index.text");
+            int ItmCnt = int.Parse(Index.ReadLine());
+            ItemList = new Item[ItmCnt];
+            for (int id = 0; id < ItmCnt; id++)
+            {
+                ItemList[id].Name = index.ReadLine();
+                Itemlist[id].id = id;
+                StreamReader ItmLdr = new StreamReader($"{id}_{ItemList[id].Name}.item");
+                ItemList[id].invscript = ItmLdr.ReadLine();
+                ItemList[id].btlscript = ItmLdr.ReadLine();
+                ItemList[id].eatscript = ItmLdr.ReadLine();
+                ItemList[id].eqpscript = ItmLdr.ReadLine();
+                ItemList[id].x = int.Parse(ItmLdr.ReadLine());
+                ItemList[id].y = int.Parse(ItmLdr.ReadLine());
+                ItemList[id].z = int.Parse(ItmLdr.ReadLine());
+                ItmLdr.Close();
+            }
+            Index.Close();
+        }
+        puclic static void NewItem()
+        {
+            
+        }
 
         public List<int> inv = new List<int>();
         public int maxinv;
