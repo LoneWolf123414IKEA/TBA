@@ -32,7 +32,6 @@ namespace TBA_V2
                 for monster;
                     same as boss but for monsters
             for pos 2:
-                this only indicates lootability, 0 is no loot and anytitng above is amount of times
             for pos 3:
                 visited or not, 0 or a 1
             for pos 4:
@@ -255,7 +254,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.hp[6]--;
+                Program.player.hp[5]--;
                 Program.player.ill++;
             }
 
@@ -278,7 +277,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.hp[6]--;
+                Program.player.hp[5]--;
                 Program.player.ill++;
             }
         }
@@ -300,7 +299,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.hp[6]--;
+                Program.player.hp[5]--;
                 Program.player.ill++;
             }
         }
@@ -322,7 +321,7 @@ namespace TBA_V2
             }
             else
             {
-                Program.player.hp[6]--;
+                Program.player.hp[5]--;
                 Program.player.ill++;
             }
         }

@@ -38,14 +38,14 @@ namespace TBA_V2
         public static Item[] ItemList;
         public static void itemboot()
         {
-            StreamReader Index = new StreamReader("Data\\Items\\Index.text");
+            StreamReader Index = new StreamReader("Data\\Items\\Index.txt");
             int ItmCnt = int.Parse(Index.ReadLine());
             ItemList = new Item[ItmCnt];
             for (int id = 0; id < ItmCnt; id++)
             {
                 ItemList[id].Name = Index.ReadLine();
                 ItemList[id].id = id;
-                StreamReader ItmLdr = new StreamReader($"Data\\Items\\{id}_{ItemList[id].Name}.item");
+                StreamReader ItmLdr = new StreamReader($"Data\\Items\\{id}_{ItemList[id].Name}.txt");
                 ItemList[id].invscript = ItmLdr.ReadLine();
                 ItemList[id].btlscript = ItmLdr.ReadLine();
                 ItemList[id].eatscript = ItmLdr.ReadLine();
@@ -62,7 +62,8 @@ namespace TBA_V2
         public static void NewItem()
         {
             Console.Clear();
-            StreamWriter Index = new StreamWriter("Data\\Items\\Index.text");
+            StreamWriter Index = new StreamWriter("Data\\Items\\Index.txt");
+            Index.WriteLine(ItemList.Length + 1);
             for (int i = 0; i < ItemList.Length; i++)
             {
                 Index.WriteLine(ItemList[i].Name);
@@ -72,44 +73,45 @@ namespace TBA_V2
             string name = Console.ReadLine();
             Index.WriteLine(name);
             Index.Close();
-            StreamWriter New = new StreamWriter($"Data\\Items\\{id}_{name}.item");
+            StreamWriter N = new StreamWriter($"Data\\Items\\{id}_{name}.txt");
             Console.WriteLine("Input Inventory script of item");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input Battle sctipt of item");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input Eat script of item");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input Equip script of item");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input x");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input y");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.WriteLine("Input z");
-            New.WriteLine(Console.ReadLine());
+            N.WriteLine(Console.ReadLine());
             Console.Clear();
-            Console.WriteLine("███████████████████");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("█                 █");
-            Console.WriteLine("███████████████████");
+            Console.WriteLine("████████████████████");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("█                  █");
+            Console.WriteLine("████████████████████");
             Console.SetCursorPosition(1, 1);
             char[,] s = new char[18, 9];
             int x = 0;
             int y = 0;
             bool brk = true;
             Console.CursorVisible = true;
+            ConsoleKeyInfo key;
             while (brk)
             {
-                s[x, y] = (char)Console.Read();
+                key = Console.ReadKey(false);
                 Console.SetCursorPosition(x + 1, y + 1);
-                switch (Console.ReadKey().Key)
+                switch (key.Key)
                 {
                     case ConsoleKey.UpArrow:
                         if (y != 0)
@@ -142,6 +144,9 @@ namespace TBA_V2
                     case ConsoleKey.Enter:
                         brk = false; 
                         break;
+                    default:
+                        s[x, y] = key.KeyChar;
+                        break;
                 }
             }
             for (int i = 0; i < 18; i++)
@@ -151,24 +156,28 @@ namespace TBA_V2
                     if (s[i, j] == null) s[i, j] = ' ';
                 }
             }
-            New.WriteLine(s);
+            foreach (char i in s)
+            {
+                N.Write(i);
+            }
+            N.WriteLine();
             Console.Clear();
             Console.WriteLine("████████████████████████████████");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
-            Console.WriteLine("█??????????????????????????????█");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
+            Console.WriteLine("█                              █");
             Console.WriteLine("████████████████████████████████");
             Console.SetCursorPosition(1, 1);
             s = new char[30, 15];
@@ -178,9 +187,9 @@ namespace TBA_V2
             Console.CursorVisible = true;
             while (brk)
             {
-                s[x, y] = (char)Console.Read();
+                key = Console.ReadKey();
                 Console.SetCursorPosition(x + 1, y + 1);
-                switch (Console.ReadKey().Key)
+                switch (key.Key)
                 {
                     case ConsoleKey.UpArrow:
                         if (y != 0)
@@ -213,6 +222,9 @@ namespace TBA_V2
                     case ConsoleKey.Enter:
                         brk = false;
                         break;
+                    default:
+                        s[x, y] = key.KeyChar;
+                        break;
                 }
             }
             for (int i = 0; i < 30; i++)
@@ -222,7 +234,11 @@ namespace TBA_V2
                     if (s[i, j] == null) s[i, j] = ' ';
                 }
             }
-            New.WriteLine(s);
+            foreach (char i in s)
+            {
+                N.Write(i);
+            }
+            N.Close();
         }
 
         public List<int> inv = new List<int>();

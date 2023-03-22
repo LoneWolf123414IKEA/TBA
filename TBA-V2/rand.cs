@@ -34,10 +34,10 @@ namespace TBA_V2
                 9,
                 0,
                 5,
-                9,
-                4,
                 25,
                 20,
+                9,
+                4,
                 7,
                 4//this is for nothing
             };
