@@ -354,7 +354,7 @@ namespace TextBasedAdventureV2
                     else if (Program.player.hp[0] == 0) Console.Write("00");
                     else if (Program.player.hp[0] < 10) Console.Write($"0{Program.player.hp[0].ToString()[0] - '0'}");
                     else Console.Write($"{Program.player.hp[0].ToString()[0] - '0'}{Program.player.hp[0].ToString()[1] - '0'}");
-                    Console.SetCursorPosition(133, 6);
+                    Console.SetCursorPosition(134, 6);
                     Console.ForegroundColor = GenFore;
                     if (Program.player.slotfilled[0] != null) Console.Write("E");
                     else Console.Write("N");

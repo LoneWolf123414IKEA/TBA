@@ -15,9 +15,10 @@ namespace TextBasedAdventureV2
         public static BattleScript figt = new BattleScript();
         static void Main()
         {
+            /*
             ItemManegement.itemboot();
             ItemManegement.NewItem();
-            /*
+            */
             Console.OutputEncoding = Encoding.Unicode;
             move.mapgen("¦");
             IO.Refresh("");
@@ -32,7 +33,6 @@ namespace TextBasedAdventureV2
                 IO.Refresh("");
                 IO.Map();
             }
-            */
         }
     }
 }
