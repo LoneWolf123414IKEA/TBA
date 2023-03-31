@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
-    internal class rand
+    internal class UtilityFunctions
     {
         private new Random r = new Random();
         public int wh(int[] wheights)

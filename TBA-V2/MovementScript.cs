@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
-    internal class move
+    internal class MovementScript
     {
-        private rand rand = new rand();
+        private UtilityFunctions rand = new UtilityFunctions();
         public int[,,,] map = new int[260, 260, 4, 5];
         /*
         first indicats x coordinate

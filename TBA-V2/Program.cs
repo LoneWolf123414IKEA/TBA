@@ -4,19 +4,19 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
     class Program
     {
 
-        public static chr player = new chr();
-        public static move move = new move();
-        public static items inv = new items();
-        public static battlescript figt = new battlescript();
+        public static CharacterCode player = new CharacterCode();
+        public static MovementScript move = new MovementScript();
+        public static ItemManegement inv = new ItemManegement();
+        public static BattleScript figt = new BattleScript();
         static void Main()
         {
-            items.itemboot();
-            items.NewItem();
+            ItemManegement.itemboot();
+            ItemManegement.NewItem();
             /*
             Console.OutputEncoding = Encoding.Unicode;
             move.mapgen("¦");

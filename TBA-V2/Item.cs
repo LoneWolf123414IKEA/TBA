@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
     internal class Item
     {

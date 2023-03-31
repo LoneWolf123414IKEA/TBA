@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
-    internal class chr
+    internal class CharacterCode
     {
         public string name = "";
         public float[] hp =

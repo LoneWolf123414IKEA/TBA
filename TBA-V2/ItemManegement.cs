@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
-    internal class items
+    internal class ItemManegement
     {
-        private rand rand = new rand();
+        private UtilityFunctions rand = new UtilityFunctions();
         public float[,] id =
         {
             { 1, 10},

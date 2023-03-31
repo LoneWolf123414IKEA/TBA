@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace TBA_V2
+namespace TextBasedAdventureV2
 {
-    internal class battlescript
+    internal class BattleScript
     {
         private Random r = new Random();
-        private rand rand = new rand();
+        private UtilityFunctions rand = new UtilityFunctions();
         private string name;
         private float hp;
         private float res;
