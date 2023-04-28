@@ -12,6 +12,7 @@ namespace TextBasedAdventureV2
     {
         private UtilityFunctions rand = new UtilityFunctions();
         public int[,,,] map = new int[260, 260, 4, 5];
+        public Enemy[,,] enemy = new Enemy[260, 260, 4];
         /*
         first indicats x coordinate
         second indicates y coordinate
@@ -51,9 +52,23 @@ namespace TextBasedAdventureV2
                 {
                     for (int x1 = 0; x1 < 260; x1++)
                     {
+                        for (int z1 = 0; z1 < 4; z1++)
+                        {
+                            enemy[x1, y1, z1].gen(z1);
+                        }
+                    }
+                }
+
+
+
+
+                for (int y1 = 0; y1 < 260; y1++)
+                {
+                    for (int x1 = 0; x1 < 260; x1++)
+                    {
                         map[x1, y1, 0, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 0, 0] == 0) map[x1, y1, 0, 1] = 1;
-                        else map[x1, y1, 0, 1] = rand.wh(new int[] { 9, 1 });
+//                        else map[x1, y1, 0, 1] = rand.wh(new int[] { 9, 1 });
                         map[x1, y1, 0, 2] = rand.wh(new int[] { 10, 35, 4, 1 });
                         map[x1, y1, 0, 3] = 0;
                     }
@@ -63,13 +78,15 @@ namespace TextBasedAdventureV2
                 map[0, 0, 0, 2] = 1;
                 map[0, 0, 0, 3] = 1;
 
+
+
                 for (int y1 = 0; y1 < 260; y1++)
                 {
                     for (int x1 = 0; x1 < 260; x1++)
                     {
                         map[x1, y1, 1, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 1, 0] == 0) map[x1, y1, 1, 1] = 1;
-                        else map[x1, y1, 1, 1] = rand.wh(new int[] { 1, 6, 3 });
+//                        else map[x1, y1, 1, 1] = rand.wh(new int[] { 1, 6, 3 });
                         map[x1, y1, 1, 2] = rand.wh(new int[] { 2, 5, 10, 35, 4, 1 });
                         map[x1, y1, 1, 3] = 0;
                     }
@@ -81,7 +98,7 @@ namespace TextBasedAdventureV2
                     {
                         map[x1, y1, 2, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 2, 0] == 0) map[x1, y1, 2, 1] = 1;
-                        else map[x1, y1, 2, 1] = rand.wh(new int[] { 0, 1, 6, 3 });
+//                        else map[x1, y1, 2, 1] = rand.wh(new int[] { 0, 1, 6, 3 });
                         map[x1, y1, 2, 2] = rand.wh(new int[] { 0, 1, 5, 10, 35, 4, 1 });
                         map[x1, y1, 2, 3] = 0;
                     }
@@ -93,7 +110,7 @@ namespace TextBasedAdventureV2
                     {
                         map[x1, y1, 3, 0] = rand.wh(new int[] { 1, 90 });
                         if (map[x1, y1, 3, 0] == 0) map[x1, y1, 3, 1] = 1;
-                        else map[x1, y1, 3, 1] = rand.wh(new int[] { 0, 0, 1, 6, 3 });
+//                        else map[x1, y1, 3, 1] = rand.wh(new int[] { 0, 0, 1, 6, 3 });
                         map[x1, y1, 3, 2] = rand.wh(new int[] { 1, 0, 0, 1, 2, 10, 20, 38, 10 });
                         map[x1, y1, 3, 3] = 0;
                     }
@@ -180,8 +197,8 @@ namespace TextBasedAdventureV2
             }
         }
         public void mapsave(string name)
-            {
-                StreamWriter Mps = new StreamWriter(name + ".map");
+        {
+            StreamWriter Mps = new StreamWriter($"Data\\Map\\{name}\\Player.map");
             for (int y1 = 0; y1 < 260; y1++)
             {
                 for (int x1 = 0; x1 < 260; x1++)
@@ -192,6 +209,7 @@ namespace TextBasedAdventureV2
                     Mps.Write(map[x1, y1, 0, 3]);
                     Mps.Write(map[x1, y1, 0, 4]);
                 }
+
             }
             Mps.Write('\n');
             for (int y1 = 0; y1 < 260; y1++)
@@ -235,6 +253,18 @@ namespace TextBasedAdventureV2
             Mps.WriteLine(lastx);
             Mps.WriteLine(lasty);
             Mps.Close();
+            for (int y1 = 0; y1 < 260; y1++)
+            {
+                for (int x1 = 0; x1 < 260; x1++)
+                {
+                    for (int z1 = 0; z1 < 4; z1++)
+                    {
+                        StreamWriter Mos = new StreamWriter($"Data\\Map\\{name}\\{x1}{y1}{z1}.mon");
+                        Mos.WriteLine(enemy[x1, y1, z1]);
+                        Mos.Close();
+                    }
+                }
+            }
         }
         public void North()
         {
