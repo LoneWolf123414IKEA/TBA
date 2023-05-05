@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TextBasedAdventureV2
 {
@@ -35,7 +36,7 @@ namespace TextBasedAdventureV2
             string[] files;
             try
             {
-                files = System.IO.Directory.GetFiles("C:\\Users\\Pontus\\source\\repos\\TBA\\TBA-V2\\bin\\Debug\\net6.0", "*.save");
+                files = System.IO.Directory.GetFiles("Data\\S", "*.save");
             }
             catch 
             {
@@ -87,6 +88,8 @@ namespace TextBasedAdventureV2
                                 Console.SetCursorPosition(53, 4);
                                 Program.player.name = Console.ReadLine();
                             } while (Program.player.name.Length > 16);
+                            System.IO.Directory.CreateDirectory($"Data\\S\\{Program.player.name}");
+                            System.IO.Directory.CreateDirectory($"Data\\S\\{Program.player.name}\\Map");
                             Program.inv.invgen("¦");
                             Program.move.mapgen("¦");
                         }

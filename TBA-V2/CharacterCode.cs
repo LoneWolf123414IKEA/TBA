@@ -101,7 +101,7 @@ namespace TextBasedAdventureV2
         }
         public void Chsave()
         {
-            StreamWriter Chs = new StreamWriter(name + ".save");
+            StreamWriter Chs = new StreamWriter($"Data\\S\\{name}.save");
             Chs.WriteLine(name);
             
             Chs.Write(hp[0]);

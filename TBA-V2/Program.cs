@@ -19,6 +19,12 @@ namespace TextBasedAdventureV2
             ItemManegement.itemboot();
             ItemManegement.NewItem();
             */
+            if (!File.Exists("Data"))
+            {
+                System.IO.Directory.CreateDirectory($"Data");
+                System.IO.Directory.CreateDirectory($"Data\\Items");
+                System.IO.Directory.CreateDirectory($"Data\\S");
+            }
             Console.OutputEncoding = Encoding.Unicode;
             move.mapgen("¦");
             IO.Refresh("");

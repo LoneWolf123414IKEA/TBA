@@ -11,31 +11,6 @@ namespace TextBasedAdventureV2
     {
         private Random r = new Random();
         private UtilityFunctions rand = new UtilityFunctions();
-        private string name;
-        private float hp;
-        private float res;
-        private int dmg;
-        private int id;
-        public void mongen(int type)
-        {
-            switch (type)
-            {
-                case 0:
-                    name = "skeleton";
-                    hp = r.Next(10, 21);
-                    res = r.Next(5, 14) / 100;
-                    dmg = r.Next(5, 11);
-                    break;
-                case 1:
-                    name = "knight";
-                    hp = r.Next(23, 31);
-                    res = r.Next(95, 100) / 100;
-                    dmg = r.Next(15, 20);
-                    break;
-                default:
-                    break;
-            }
-        }
         public bool? battle()
         {
             return null;

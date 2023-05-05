@@ -54,7 +54,7 @@ namespace TextBasedAdventureV2
                     {
                         for (int z1 = 0; z1 < 4; z1++)
                         {
-                            enemy[x1, y1, z1].gen(z1);
+                            enemy[x1, y1, z1] = new Enemy(z1);
                         }
                     }
                 }
@@ -198,7 +198,7 @@ namespace TextBasedAdventureV2
         }
         public void mapsave(string name)
         {
-            StreamWriter Mps = new StreamWriter($"Data\\Map\\{name}\\Player.map");
+            StreamWriter Mps = new StreamWriter($"Data\\S\\{name}\\Map\\Player.map");
             for (int y1 = 0; y1 < 260; y1++)
             {
                 for (int x1 = 0; x1 < 260; x1++)
@@ -259,9 +259,7 @@ namespace TextBasedAdventureV2
                 {
                     for (int z1 = 0; z1 < 4; z1++)
                     {
-                        StreamWriter Mos = new StreamWriter($"Data\\Map\\{name}\\{x1}{y1}{z1}.mon");
-                        Mos.WriteLine(enemy[x1, y1, z1]);
-                        Mos.Close();
+                        enemy[x1, y1, z1].save(x1, y1, z1);
                     }
                 }
             }
