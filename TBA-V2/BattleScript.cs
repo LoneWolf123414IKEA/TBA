@@ -11,8 +11,9 @@ namespace TextBasedAdventureV2
     {
         private Random r = new Random();
         private UtilityFunctions rand = new UtilityFunctions();
-        public bool? battle()
+        public static bool? battle()
         {
+            IO.Clear();
             return null;
         }
     }

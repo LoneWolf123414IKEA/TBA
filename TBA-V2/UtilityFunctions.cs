@@ -9,6 +9,10 @@ namespace TextBasedAdventureV2
     internal class UtilityFunctions
     {
         private new Random r = new Random();
+        public float pro()
+        {
+            return r.Next() / int.MaxValue;
+        }
         public int wh(int[] wheights)
         {
             int totw = 0;

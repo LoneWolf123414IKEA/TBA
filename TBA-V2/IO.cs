@@ -652,50 +652,63 @@ namespace TextBasedAdventureV2
                 for (int j = Program.move.y - 6; j < Program.move.y + 5; j++)
                 {
                     Console.ForegroundColor = MapFore;
-                    if (i == Program.move.x && j == Program.move.y) Console.Write(ChrRoom);
-                    else if (i < -1 || i > 260 || j < -1 || j > 260) Console.Write("  ");
-                    else if (i == -1 && j == -1) Console.Write("╔═");
-                    else if (i == -1 && j == 260) Console.Write("╚═");
-                    else if (i == 260 && j == -1) Console.Write("═╗");
-                    else if (i == 260 && j == 260) Console.Write("═╝");
-                    else if (j == -1) Console.Write("║ ");
-                    else if (j == 260) Console.Write(" ║");
-                    else if (i == -1 || i == 260) Console.Write("══");
-                    else if (Program.move.map[i, j, Program.move.z, 0] == 2 && Program.move.map[i, j, Program.move.z, 1] == 0/*will be next boss*/)
+                    if (Program.player.hp[0] >= 15)
                     {
-                        Console.ForegroundColor= MapLoot;
-                        Console.Write(SpcRoom);
+                        if (i == Program.move.x && j == Program.move.y) Console.Write(ChrRoom);
+                        else if (i < -1 || i > 260 || j < -1 || j > 260) Console.Write("  ");
+                        else if (i == -1 && j == -1) Console.Write("╔═");
+                        else if (i == -1 && j == 260) Console.Write("╚═");
+                        else if (i == 260 && j == -1) Console.Write("═╗");
+                        else if (i == 260 && j == 260) Console.Write("═╝");
+                        else if (j == -1) Console.Write("║ ");
+                        else if (j == 260) Console.Write(" ║");
+                        else if (i == -1 || i == 260) Console.Write("══");
+                        else if (Program.move.map[i, j, Program.move.z, 0] == 2 && Program.move.map[i, j, Program.move.z, 1] == 0/*will be next boss*/)
+                        {
+                            Console.ForegroundColor= MapLoot;
+                            Console.Write(SpcRoom);
+                        }
+                        else if (Program.move.map[i, j, Program.move.z, 0] == 2 || (Program.move.map[i, j, Program.move.z, 0] == 0 && Program.move.map[i, j, Program.move.z, 1] == 0)) Console.Write(SpcRoom);
+                        else if (Program.move.map[i, j, Program.move.z, 3] == 0) Console.Write(NanRoom);
+                        else
+                        {
+                            if (Program.move.map[i, j, Program.move.z, 2] > 0) Console.ForegroundColor = MapLoot;
+                            if (Program.move.map[i, j, Program.move.z, 0] == 0) Console.Write(EmtRoom);
+                            else Console.Write(MonRoom);
+                        }
                     }
-                    else if (Program.move.map[i, j, Program.move.z, 0] == 2 || (Program.move.map[i, j, Program.move.z, 0] == 0 && Program.move.map[i, j, Program.move.z, 1] == 0)) Console.Write(SpcRoom);
-                    else if (Program.move.map[i, j, Program.move.z, 3] == 0) Console.Write(NanRoom);
                     else
                     {
-                        if (Program.move.map[i, j, Program.move.z, 2] > 0) Console.ForegroundColor = MapLoot;
-                        if (Program.move.map[i, j, Program.move.z, 0] == 0) Console.Write(EmtRoom);
-                        else Console.Write(MonRoom);
+                        Console.Write("  ");
                     }
+                    
                 }
                 y++;
             }
             Console.SetCursorPosition(131, 32);
-            if (Program.move.x > 99) Console.Write(Program.move.x);
+            if (Program.player.hp[0] <= 15) Console.Write("   ");
+            else if (Program.move.x > 99) Console.Write(Program.move.x);
             else if (Program.move.x < 10) Console.Write($"00{Program.move.x}");
             else Console.Write($"0{Program.move.x}");
 
             Console.SetCursorPosition(131, 34);
-            if (Program.move.y > 99) Console.Write(Program.move.y);
+            if (Program.player.hp[0] <= 15) Console.Write("   ");
+            else if (Program.move.y > 99) Console.Write(Program.move.y);
             else if (Program.move.y < 10) Console.Write($"00{Program.move.y}");
             else Console.Write($"0{Program.move.y}");
 
             Console.SetCursorPosition(132, 36);
-            Console.Write(Program.move.z);
+            if (Program.player.hp[0] <= 15) Console.Write(" ");
+            else Console.Write(Program.move.z);
 
             Console.SetCursorPosition(132, 38);
-            if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 2] > 0) Console.Write("Y");
+            if (Program.player.hp[0] <= 15) Console.Write(" ");
+            else if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 2] > 0) Console.Write("Y");
             else Console.Write("N");
 
             Console.SetCursorPosition(132, 39);
-            if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1)
+            if (Program.player.hp[0] <= 15) Console.Write(" ");
+            else if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1)
             {
                 switch (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 1])
                 {
@@ -712,7 +725,8 @@ namespace TextBasedAdventureV2
             else Console.Write("N");
 
             Console.SetCursorPosition(132, 40);
-            if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 4] == 1) Console.Write("↓");
+            if (Program.player.hp[0] <= 15) Console.Write(" ");
+            else if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 4] == 1) Console.Write("↓");
             else if (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 4] == 2) Console.Write("↑");
             else Console.Write("N");
         }
@@ -738,7 +752,7 @@ namespace TextBasedAdventureV2
                         //inventory
                         break;
                     case ConsoleKey.Enter:
-                        //battle
+                        BattleScript.battle();
                         return;
                     case ConsoleKey.S:
                         Program.player.Chsave();

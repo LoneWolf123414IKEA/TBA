@@ -25,9 +25,11 @@ namespace TextBasedAdventureV2
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             }
         };
+
+
         public Enemy(int floor)
         {
-
+            name = "placeholder";
         }
         public Enemy(string path)
         {
@@ -38,6 +40,7 @@ namespace TextBasedAdventureV2
         }
 
         
+
         private string name;
         private float[] hp =
         {
@@ -52,13 +55,37 @@ namespace TextBasedAdventureV2
             100,//lf
             100//rf
         };
+        private float[] armr =
+        {
+            0.1F,//h
+            0.1F,//t
+            0.1F,//la
+            0.1F,//ra
+            0.1F,//lh
+            0.1F,//rh
+            0.1F,//ll
+            0.1F,//rl
+            0.1F,//lf
+            0.1F//rf
+        };
 
         public void save(int x, int y, int z)
         {
-            StreamWriter Mos = new StreamWriter($"Data\\S\\{name}\\Map\\{x}{y}{z}.mon");
+            StreamWriter Mos = new StreamWriter($"Data\\S\\{Program.player.name}\\Map\\{x}{y}{z}.mon");
             Mos.WriteLine(name);
             Mos.Write($"{hp[0]};{hp[1]};{hp[2]};{hp[3]};{hp[4]};{hp[5]};{hp[6]};{hp[7]};{hp[8]};{hp[9]}");
             Mos.Close();
+        }
+
+        public bool hit(float acc, float dmg, int hit)
+        {
+            float aacc = (1 - armr[hit]) * acc;
+            if (aacc >= rand.pro())
+            {
+                hp[hit] -= dmg;
+                return true;
+            }
+            return false;
         }
     }
 }
