@@ -770,6 +770,42 @@ namespace TextBasedAdventureV2
                 }
             }
         }
+        public static void btlWait()
+        {
+            while (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1)
+            {
+                Clear();
+                Console.ForegroundColor = GenFore;
+                Console.BackgroundColor = GenBack;
+                Console.SetCursorPosition(4, 4);
+                Console.Write("if you exit now it will not save!");
+                switch (Console.ReadKey(false).Key)
+                {
+                    case ConsoleKey.Escape:
+                        Settings();
+                        Refresh("");
+                        break;
+                    case ConsoleKey.NumPad4:
+                        Program.move.enemy[Program.move.x, Program.move.y, Program.move.z].hit(Program.player.hp[4] / 100, Program.player.dmgm);
+                        return;
+                    case ConsoleKey.NumPad6:
+                        Program.move.enemy[Program.move.x, Program.move.y, Program.move.z].hit(Program.player.hp[5] / 100, Program.player.dmgo);
+                        return;
+                    case ConsoleKey.I:
+                        //if inventoy thingy{
+                        //    return;
+                        //}
+                        break;
+                    case ConsoleKey.Backspace:
+                        Program.move.mapsave(Program.player.name);
+                        Program.inv.invsave(Program.player.name);
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         public static void Menu()
         {
             while (true)

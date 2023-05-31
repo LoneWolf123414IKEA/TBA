@@ -14,6 +14,9 @@ namespace TextBasedAdventureV2
         public static bool? battle()
         {
             IO.Clear();
+            while (Program.player.hp.Max() >= 0){
+                
+            }
             return null;
         }
     }
