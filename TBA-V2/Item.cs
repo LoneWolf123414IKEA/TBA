@@ -10,8 +10,8 @@ namespace TextBasedAdventureV2
     {
         public Item(string path, int id)
         {
-            id = id;
-            StreamReader ItmLdr = new StreamReader(path);
+            _id = id;
+            StreamReader ItmLdr = new(path);
             Name = ItmLdr.ReadLine();
             scripts[0] = ItmLdr.ReadLine();
             scripts[1] = ItmLdr.ReadLine();
@@ -24,7 +24,7 @@ namespace TextBasedAdventureV2
             ItmLdr.Close();
         }
         private string Name;
-        private int id;
+        private int _id;
         private string[] scripts = new string[4];
         private string[] txtrs = new string[2];
         private int[] vars;
@@ -62,7 +62,9 @@ namespace TextBasedAdventureV2
                 }
             }
         }
+#pragma warning disable IDE0060 // Remove unused parameter
         public void EqpItm(bool eqp)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             for (int i = 0; i > scripts[3].Length; i++)
             {

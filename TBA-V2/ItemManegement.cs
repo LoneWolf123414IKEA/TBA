@@ -10,7 +10,7 @@ namespace TextBasedAdventureV2
 {
     internal class ItemManegement
     {
-        private UtilityFunctions rand = new UtilityFunctions();
+        private readonly UtilityFunctions rand = new();
         public float[,] id =
         {
             { 1, 10},
@@ -36,20 +36,20 @@ namespace TextBasedAdventureV2
             "spear",
         };
         public static Item[] ItemList;
-        public static void itemboot()
+        public static void Itemboot()
         {
-            StreamReader Index = new StreamReader("Data\\Items\\Index.txt");
+            StreamReader Index = new("Data\\Items\\Index.txt");
             int ItmCnt = int.Parse(Index.ReadLine());
             ItemList = new Item[ItmCnt];
             for (int id = 0; id < ItmCnt; id++) ItemList[id] = new Item($"Data\\Items\\{id}_{Index.ReadLine()}.txt", id);
             Index.Close();
         }
 
-        public List<int> inv = new List<int>();
+        public List<int> inv = new();
         public int maxinv;
         public int mainhand;
         public int offhand;
-        public void invgen(string name)
+        public void Invgen(string name)
         {
             if (name == "¦")
             {
@@ -58,25 +58,25 @@ namespace TextBasedAdventureV2
             }
             else
             {
-                StreamReader inl = new StreamReader(name + ".inv");
+                StreamReader inl = new(name + ".inv");
                 maxinv = int.Parse(inl.ReadLine());
                 inv = inl.ReadLine().Split("¦").Select(int.Parse).ToList();
                 inl.Close();
             }
         }
 
-        public void invsave(string name)
+        public void Invsave(string name)
         {
-            StreamWriter ins = new StreamWriter(name + ".inv");
+            StreamWriter ins = new(name + ".inv");
             ins.WriteLine(maxinv);
             ins.Write(inv[0]);
-            for (int i = 1; i < inv.Count(); i++) ins.Write("¦" + inv[i]);
+            for (int i = 1; i < inv.Count; i++) ins.Write("¦" + inv[i]);
             ins.Close();
         }
         public void Inv()
         {
             IO.Clear();
-            for (int i = 0; i < inv.Count(); i++)
+            for (int i = 0; i < inv.Count; i++)
             {
                 Console.SetCursorPosition(5, i + 4);
                 Console.Write(i + 1 + " " + names[inv[i]]);
@@ -138,11 +138,11 @@ namespace TextBasedAdventureV2
                 }
             }
         }
-        public void loot()
+        public void Loot()
         {
-            int loot = rand.wh();
+            int loot = rand.Wh();
             if (loot == names.Length);
-            else if (inv.Count() <= maxinv)
+            else if (inv.Count <= maxinv)
             {
                 IO.Clear();
                 Console.SetCursorPosition(5, 4);
@@ -153,14 +153,14 @@ namespace TextBasedAdventureV2
                     inv.Add(loot);
                 }
             }
-            else if (inv.Count() > maxinv)
+            else if (inv.Count > maxinv)
             {
                 IO.Clear();
                 Console.SetCursorPosition(5, 4);
                 Console.Write("do you want " + names[loot] + "?\n");
                 if (Console.ReadKey(false).Key == ConsoleKey.Y)
                 {
-                    for (int i = 0; i < inv.Count(); i++)
+                    for (int i = 0; i < inv.Count; i++)
                     {
                         Console.SetCursorPosition(5, i+5);
                         Console.Write(i + 1 + " " + names[inv[i]]);

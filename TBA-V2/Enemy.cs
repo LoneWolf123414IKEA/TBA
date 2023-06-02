@@ -10,8 +10,8 @@ namespace TextBasedAdventureV2
 {
     internal class Enemy
     {
-        private UtilityFunctions rand = new UtilityFunctions();
-        private static int[][] randarrs =
+        private readonly UtilityFunctions rand = new();
+        private readonly static int[][] randarrs =
         {
             new int[]{
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -34,7 +34,7 @@ namespace TextBasedAdventureV2
         }
         public Enemy(string path)
         {
-            StreamReader ItmLdr = new StreamReader(path);
+            StreamReader ItmLdr = new(path);
             name = ItmLdr.ReadLine();
             hp = float.Parse(ItmLdr.ReadLine());
             armr = float.Parse(ItmLdr.ReadLine());
@@ -46,10 +46,26 @@ namespace TextBasedAdventureV2
         private string name;
         private float hp = 100;
         private float armr = 0.1F;
-
-        public void save(int x, int y, int z)
+        public float dmg = 5;
+        public bool Ded()
+        {
+            return (hp >= 0);
+        }
+        public void Print()
+        {
+            IO.Clear();
+            Console.SetCursorPosition(4, 5);
+            Console.Write($"{name}");
+            Console.SetCursorPosition(4, 6);
+            Console.Write($"hp: {hp}");
+        }
+        public static Enemy Currentget()
+        {
+            return Program.move.enemy[Program.move.x, Program.move.y, Program.move.z];
+        }
+        public void Save(int x, int y, int z)
         { 
-            StreamWriter Mos = new StreamWriter($"Data\\S\\{Program.player.name}\\Map\\{x};{y};{z}.mon");
+            StreamWriter Mos = new($"Data\\S\\{Program.player.name}\\Map\\{x};{y};{z}.mon");
             if (Program.move.map[x, y, z, 3] == 0)
             {
                 Mos.WriteLine("N/A");
@@ -59,13 +75,13 @@ namespace TextBasedAdventureV2
             Mos.WriteLine(name);
             Mos.WriteLine(hp);
             Mos.WriteLine(armr);
-            Mos.Close();json
+            Mos.Close();
         }
 
-        public bool hit(float acc, float dmg)
+        public bool Hit(float acc, float dmg)
         {
             float aacc = (1 - armr) * acc;
-            if (aacc >= rand.pro())
+            if (aacc >= rand.Pro())
             {
                 hp -= dmg;
                 return true;

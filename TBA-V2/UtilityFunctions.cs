@@ -8,12 +8,12 @@ namespace TextBasedAdventureV2
 {
     internal class UtilityFunctions
     {
-        private new Random r = new Random();
-        public float pro()
+        private readonly Random r = new();
+        public float Pro()
         {
             return r.Next() / int.MaxValue;
         }
-        public int wh(int[] wheights)
+        public int Wh(int[] wheights)
         {
             int totw = 0;
             foreach (int i in wheights) totw += i;
@@ -30,7 +30,7 @@ namespace TextBasedAdventureV2
             }
             return 0;
         }
-        public int wh()
+        public int Wh()
         {
             int[] wheights =
             {
@@ -60,10 +60,11 @@ namespace TextBasedAdventureV2
             }
             return 0;
         }
-        public bool wh(int x, int y)
+        public bool Wh(int x, int y)
         {
             if (r.Next(x + y) > x) return false;
             return true;
         }
+
     }
 }

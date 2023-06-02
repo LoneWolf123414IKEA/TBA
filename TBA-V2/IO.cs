@@ -40,7 +40,9 @@ namespace TextBasedAdventureV2
             }
             catch 
             {
+#pragma warning disable CA1825 // Avoid zero-length array allocations
                 files = new string[0];
+#pragma warning restore CA1825 // Avoid zero-length array allocations
             }
             for (int i = 0; i < files.Length; i++)
             {
@@ -90,14 +92,14 @@ namespace TextBasedAdventureV2
                             } while (Program.player.name.Length > 16);
                             System.IO.Directory.CreateDirectory($"Data\\S\\{Program.player.name}");
                             System.IO.Directory.CreateDirectory($"Data\\S\\{Program.player.name}\\Map");
-                            Program.inv.invgen("¦");
-                            Program.move.mapgen("¦");
+                            Program.inv.Invgen("¦");
+                            Program.move.Mapgen("¦");
                         }
                         else
                         {
                             Program.player.Chload(files[pos - 4]);
-                            Program.inv.invgen(Program.player.name);
-                            Program.move.mapgen(Program.player.name);
+                            Program.inv.Invgen(Program.player.name);
+                            Program.move.Mapgen(Program.player.name);
                         }
                         return;
                     default:
@@ -732,7 +734,7 @@ namespace TextBasedAdventureV2
         }
         public static void Wait()
         {
-            while (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1)
+            while (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1 && Enemy.Currentget().Ded())
             {
                 Clear();
                 Console.ForegroundColor = GenFore;
@@ -746,23 +748,23 @@ namespace TextBasedAdventureV2
                         Refresh("");
                         break;
                     case ConsoleKey.R:
-                        Program.move.reuturn();
+                        Program.move.Reuturn();
                         return;
                     case ConsoleKey.I:
                         //inventory
                         break;
                     case ConsoleKey.Enter:
-                        BattleScript.battle();
+                        BattleScript.Battle();
                         return;
                     case ConsoleKey.S:
                         Program.player.Chsave();
-                        Program.move.mapsave(Program.player.name);
-                        Program.inv.invsave(Program.player.name);
+                        Program.move.Mapsave(Program.player.name);
+                        Program.inv.Invsave(Program.player.name);
                         break;
                     case ConsoleKey.Backspace:
                         Program.player.Chsave();
-                        Program.move.mapsave(Program.player.name);
-                        Program.inv.invsave(Program.player.name);
+                        Program.move.Mapsave(Program.player.name);
+                        Program.inv.Invsave(Program.player.name);
                         Environment.Exit(0);
                         break;
                     default:
@@ -770,7 +772,7 @@ namespace TextBasedAdventureV2
                 }
             }
         }
-        public static void btlWait()
+        public static bool BtlWait()
         {
             while (Program.move.map[Program.move.x, Program.move.y, Program.move.z, 0] == 1)
             {
@@ -779,32 +781,32 @@ namespace TextBasedAdventureV2
                 Console.BackgroundColor = GenBack;
                 Console.SetCursorPosition(4, 4);
                 Console.Write("if you exit now it will not save!");
+                Enemy.Currentget().Print();
                 switch (Console.ReadKey(false).Key)
                 {
                     case ConsoleKey.Escape:
                         Settings();
                         Refresh("");
                         break;
-                    case ConsoleKey.NumPad4:
-                        Program.move.enemy[Program.move.x, Program.move.y, Program.move.z].hit(Program.player.hp[4] / 100, Program.player.dmgm);
-                        return;
-                    case ConsoleKey.NumPad6:
-                        Program.move.enemy[Program.move.x, Program.move.y, Program.move.z].hit(Program.player.hp[5] / 100, Program.player.dmgo);
-                        return;
+                    case ConsoleKey.M:
+                        Enemy.Currentget().Hit(Program.player.hp[4] / 100, Program.player.dmgm);
+                        return false;
+                    case ConsoleKey.O:
+                        Enemy.Currentget().Hit(Program.player.hp[5] / 100, Program.player.dmgo);
+                        return false;
                     case ConsoleKey.I:
                         //if inventoy thingy{
-                        //    return;
+                        //    return false;
                         //}
                         break;
                     case ConsoleKey.Backspace:
-                        Program.move.mapsave(Program.player.name);
-                        Program.inv.invsave(Program.player.name);
-                        Environment.Exit(0);
+                        return true;
                         break;
                     default:
                         break;
                 }
             }
+            return true;
         }
         public static void Menu()
         {
@@ -822,7 +824,7 @@ namespace TextBasedAdventureV2
                         Refresh("");
                         break;
                     case ConsoleKey.L:
-                        Program.inv.loot();
+                        Program.inv.Loot();
                         return;
                     case ConsoleKey.UpArrow:
                         Program.move.North();
@@ -844,13 +846,13 @@ namespace TextBasedAdventureV2
                         return;
                     case ConsoleKey.S:
                         Program.player.Chsave();
-                        Program.move.mapsave(Program.player.name);
-                        Program.inv.invsave(Program.player.name);
+                        Program.move.Mapsave(Program.player.name);
+                        Program.inv.Invsave(Program.player.name);
                         break;
                     case ConsoleKey.Backspace:
                         Program.player.Chsave();
-                        Program.move.mapsave(Program.player.name);
-                        Program.inv.invsave(Program.player.name);
+                        Program.move.Mapsave(Program.player.name);
+                        Program.inv.Invsave(Program.player.name);
                         Environment.Exit(0);
                         return;
                     default:
@@ -1181,6 +1183,7 @@ namespace TextBasedAdventureV2
         }
         private static ConsoleColor Clr(string clr)
         {
+#pragma warning disable IDE0066 // Convert switch statement to expression
             switch (clr)
             {
                 case "Bl":
@@ -1218,31 +1221,7 @@ namespace TextBasedAdventureV2
                 default:
                     return ConsoleColor.Black;
             }
-        }
-        public static string IOtxt(string in1, string in2)
-        {
-            return "";
-        }
-        public static string IOtxt(string in1)
-        {
-            return "";
-
-        }
-        public static int IOint(string in1, string in2)
-        {
-            return 0;
-        }
-        public static void O(string in1)
-        {
-
-        }
-        public static string Itxt()
-        {
-            return "";
-        }
-        public static int Iint()
-        {
-            return 0;
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
     }
 }

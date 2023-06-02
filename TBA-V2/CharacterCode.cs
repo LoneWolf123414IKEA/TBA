@@ -76,6 +76,10 @@ namespace TextBasedAdventureV2
             spll = 0;
             kills = 0;
         }
+        public void Hit(float dmg, int hit)
+        {
+            hp[hit] -= dmg;
+        }
         public void Chload(string nam)
         {
             int i = 0;
@@ -101,7 +105,7 @@ namespace TextBasedAdventureV2
         }
         public void Chsave()
         {
-            StreamWriter Chs = new StreamWriter($"Data\\S\\{name}.save");
+            StreamWriter Chs = new($"Data\\S\\{name}.save");
             Chs.WriteLine(name);
             
             Chs.Write(hp[0]);

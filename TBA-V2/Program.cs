@@ -9,10 +9,10 @@ namespace TextBasedAdventureV2
     class Program
     {
 
-        public static CharacterCode player = new CharacterCode();
-        public static MovementScript move = new MovementScript();
-        public static ItemManegement inv = new ItemManegement();
-        public static BattleScript figt = new BattleScript();
+        public static CharacterCode player = new();
+        public static MovementScript move = new();
+        public static ItemManegement inv = new();
+        public static BattleScript figt = new();
         static void Main()
         {
             /*
@@ -26,7 +26,7 @@ namespace TextBasedAdventureV2
                 System.IO.Directory.CreateDirectory($"Data\\S");
             }
             Console.OutputEncoding = Encoding.Unicode;
-            move.mapgen("¦");
+            move.Mapgen("¦");
             IO.Refresh("");
             IO.Map();
             IO.Load();
